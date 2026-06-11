@@ -75,6 +75,13 @@ terraform output application_url
 
 Wait several minutes after `terraform apply` for EC2 user data to install Node.js and start the service. Then open the `application_url` output. See [docs/deployment-guide.md](docs/deployment-guide.md) for verification and troubleshooting.
 
+
+## Deployment Limitation
+
+Terraform was successfully initialized and validated locally. However, live AWS deployment using `terraform apply` could not be completed because the AWS account budget had been exceeded. The project is still prepared for AWS deployment using EC2, ALB, Auto Scaling Group, RDS, S3, CloudWatch, and Terraform once valid AWS credentials and budget are available.
+
+
+
 ## Destroy Resources
 
 AWS resources incur charges while they exist. After the demonstration:
