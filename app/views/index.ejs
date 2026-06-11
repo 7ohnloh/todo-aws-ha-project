@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AWS To-Do List</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="container">
+    <header>
+      <p class="eyebrow">Cloud Computing Final Project</p>
+      <h1>AWS To-Do List</h1>
+      <p>Tasks are shared by every EC2 instance through Amazon RDS.</p>
+    </header>
+
+    <section class="panel">
+      <h2>Add a task</h2>
+      <form action="/tasks" method="post" class="task-form">
+        <label for="title">Title</label>
+        <input id="title" name="title" maxlength="255" required>
+        <label for="description">Description</label>
+        <textarea id="description" name="description" rows="3"></textarea>
+        <button type="submit">Add task</button>
+      </form>
+    </section>
+
+    <section class="panel">
+      <div class="section-heading">
+        <h2>Tasks</h2>
+        <span><%= tasks.length %> total</span>
+      </div>
+
+      <% if (tasks.length === 0) { %>
+        <p class="empty">No tasks yet. Add the first one above.</p>
+      <% } %>
+
+      <ul class="task-list">
+        <% tasks.forEach((task) => { %>
+          <li class="task <%= task.completed ? 'completed' : '' %>">
+            <div class="task-copy">
+              <h3><%= task.title %></h3>
+              <% if (task.description) { %><p><%= task.description %></p><% } %>
+              <small>Created <%= new Date(task.created_at).toLocaleString() %></small>
+            </div>
+            <div class="actions">
+              <form action="/tasks/<%= task.id %>/toggle" method="post">
+                <button class="secondary" type="submit"><%= task.completed ? "Mark active" : "Complete" %></button>
+              </form>
+              <a class="button secondary" href="/tasks/<%= task.id %>/edit">Edit</a>
+              <form action="/tasks/<%= task.id %>/delete" method="post" onsubmit="return confirm('Delete this task?')">
+                <button class="danger" type="submit">Delete</button>
+              </form>
+            </div>
+          </li>
+        <% }) %>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>

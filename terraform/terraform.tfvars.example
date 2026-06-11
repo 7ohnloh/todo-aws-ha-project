@@ -1,0 +1,11 @@
+# Copy this file to terraform.tfvars and replace the example password.
+# terraform.tfvars is ignored by Git.
+aws_region  = "ap-northeast-2"
+db_username = "todo_admin"
+db_password = "replace-with-a-strong-password"
+
+# Set true when demonstrating RDS Multi-AZ high availability. This costs more.
+# db_multi_az = true
+
+# Optional: AWS sends a confirmation email before notifications begin.
+# alarm_email = "student@example.com"

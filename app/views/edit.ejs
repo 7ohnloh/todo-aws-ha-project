@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Task</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <main class="container narrow">
+    <section class="panel">
+      <p class="eyebrow">AWS To-Do List</p>
+      <h1>Edit task</h1>
+      <form action="/tasks/<%= task.id %>/edit" method="post" class="task-form">
+        <label for="title">Title</label>
+        <input id="title" name="title" maxlength="255" value="<%= task.title %>" required>
+        <label for="description">Description</label>
+        <textarea id="description" name="description" rows="5"><%= task.description || "" %></textarea>
+        <div class="actions">
+          <button type="submit">Save changes</button>
+          <a class="button secondary" href="/">Cancel</a>
+        </div>
+      </form>
+    </section>
+  </main>
+</body>
+</html>
